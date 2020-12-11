@@ -1,0 +1,35 @@
+
+
+cd ~/catkin_ws/src/ai_race/scripts
+bash prepare.sh
+
+cd ~/catkin_ws/src/ai_race/scripts
+./stop.sh
+
+cd ~/catkin_ws/src/ai_race/ai_race/utility/scripts
+python keyboard_con_pygame2.py
+l 進む
+a 左にまがる
+d 右にまがる
+
+roslaunch sim_environment rosbag.launch
+
+cd ~/catkin_ws/src/ai_race/ai_race/utility/scripts
+python rosbag_to_images_and_commands.py ~/_2020-12-10-19-05-18.bag
+
+#train
+cd ~/catkin_ws/src/ai_race/ai_race/learning/scripts
+python3 train.py --data_csv ~/Images_from_rosbag/_2020-12-10-21-29-48/_2020-12-10-21-29-48.csv --model_name tttmp
+
+cd ~/catkin_ws/src/ai_race/ai_race/learning/scripts
+python3 train.py --data_csv ~/Images_from_rosbag/_2020-12-10-19-05-18/_2020-12-10-19-05-18.csv --model_name tttmp
+
+
+# 分割しているsampleデータを結合する
+cd $HOME/ai_race_data_sample/model/plane
+cat sample_plane_trt_p* > sample_plane_trt.pth
+# 推論
+cd ~/catkin_ws/src/ai_race/ai_race/learning/scripts
+python inference_from_image.py --trt_module --trt_model $HOME/ai_race_data_sample/model/plane/sample_plane_trt.pth
+
+
