@@ -24,6 +24,9 @@ python3 train.py --data_csv ~/Images_from_rosbag/_2020-12-10-21-29-48/_2020-12-1
 cd ~/catkin_ws/src/ai_race/ai_race/learning/scripts
 python3 train.py --data_csv ~/Images_from_rosbag/_2020-12-10-19-05-18/_2020-12-10-19-05-18.csv --model_name tttmp
 
+cd ~/catkin_ws/src/ai_race/ai_race/learning/scripts
+python3 train.py --data_csv ~/Images_from_rosbag/input.csv --model_name tttmp
+
 
 # 分割しているsampleデータを結合する
 cd $HOME/ai_race_data_sample/model/plane
@@ -32,4 +35,7 @@ cat sample_plane_trt_p* > sample_plane_trt.pth
 cd ~/catkin_ws/src/ai_race/ai_race/learning/scripts
 python inference_from_image.py --trt_module --trt_model $HOME/ai_race_data_sample/model/plane/sample_plane_trt.pth
 
+
+cd ~/catkin_ws/src/ai_race/ai_race/your_environment/scripts
+python3 concat_csv.py
 
