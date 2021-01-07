@@ -43,10 +43,9 @@ Number of parameters:           9.78 k
 epoch:  11, train acc: 0.866211, train loss: 0.017605, test acc: 0.843137, test loss: 0.021321
 LAP:31(+0.4),CourseOut:1,Recovery:0
 
-
 simplenet + in 60x160 + del fc1 + add global_ave_pool + del conv5
 Computational complexity:       0.01 GMac
 Number of parameters:           7.46 k
 epoch:  11, train acc: 0.866211, train loss: 0.019126, test acc: 0.886275, test loss: 0.02091
-
+CourseOut:IPPAIATTA
 
